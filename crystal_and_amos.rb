@@ -26,6 +26,11 @@ class Lifo
     self.top = top.next
     temp_value
   end
+
+  def peek
+    raise EmptyError if empty?
+    top.value
+  end
 end
 
 describe Lifo do
@@ -45,6 +50,10 @@ describe Lifo do
     specify do
       expect{ subject.pop }.to raise_error(Lifo::EmptyError)
     end
+
+    specify do
+      expect{ subject.peek }.to raise_error(Lifo::EmptyError)
+    end
   end
 
   describe "that has one element" do
@@ -58,6 +67,10 @@ describe Lifo do
 
     specify do
       expect(subject.pop).to eql(:element)
+    end
+
+    specify do
+      expect(subject.peek).to eql(:element)
     end
   end
 
