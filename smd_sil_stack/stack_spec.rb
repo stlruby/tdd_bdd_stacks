@@ -26,24 +26,26 @@ describe Stack do
 
   context 'When it has entries' do
     before :each do
-      @value = 1
+      @value = [1, 'a', 2, 'b', 3, 'c']
       @stack = Stack.new
-      @stack.push(@value)
+      @value.each do |value|
+        @stack.push value
+      end
     end
 
     it 'is not empty' do
       expect(@stack.empty?).to eq(false)
     end
     it 'plays peekaboo' do
-      expect(@stack.peek).to eq(@value)
+      expect(@stack.peek).to eq(@value[@value.size-1])
     end
     it 'likes popcorn' do
       size = @stack.size
-      expect(@stack.pop).to eq(@value)
+      expect(@stack.pop).to eq(@value[@value.size-1])
       expect(@stack.size).to eq(size-1)
     end
     it 'has a size' do
-      expect(@stack.size).to eq(1)
+      expect(@stack.size).to eq(@value.size)
     end
   end
 
