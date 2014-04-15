@@ -1,13 +1,16 @@
 class Lifo
   EmptyError = Class.new(Exception)
 
-  Node = Struct.new(:value, :next)
+  class Node < Struct.new(:value, :next)
+    def to_ary
+      [value, self.next]
+    end
+  end
 
   attr_accessor :size, :top
 
   def initialize
-    self.size = 0
-    self.top = nil
+    self.size, self.top = 0, nil
   end
 
   def empty?
@@ -15,15 +18,14 @@ class Lifo
   end
 
   def push(element)
-    self.size = size + 1
+    self.size += 1
     self.top = Node.new(element, top)
   end
 
   def pop
     raise EmptyError if empty?
-    self.size = size - 1
-    temp_value = top.value
-    self.top = top.next
+    self.size -= 1
+    temp_value, self.top = top
     temp_value
   end
 
