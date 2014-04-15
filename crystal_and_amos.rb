@@ -25,8 +25,7 @@ class Lifo
   def pop
     raise EmptyError if empty?
     self.size -= 1
-    temp_value, self.top = top
-    temp_value
+    (temp_value, self.top = top).first
   end
 
   def peek
