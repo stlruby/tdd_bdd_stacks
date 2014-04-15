@@ -1,3 +1,8 @@
 class Node 
-  attr_accessor :content
+  attr_reader :content, :previous
+
+  def initialize(content,previous)
+    @content = content
+    @previous = previous
+  end
 end
