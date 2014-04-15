@@ -47,4 +47,69 @@ describe Stack do
      end
      it { expect(@stack.size).to eq(1) }
   end
+
+  describe '.pop' do
+     context 'an empty stack' do
+       before do
+         @stack = Stack.new
+       end
+       it { expect(@stack.pop).to be_nil } #Nil or underflow error?
+     end
+     context 'with one object' do
+       before do
+         @stack = Stack.new
+         @an_object = Object.new
+         @stack.push @an_object
+       end
+       it do 
+         expect(@stack.pop).to eq(@an_object) 
+         expect(@stack.size).to eq(0) 
+       end
+     end
+     context 'with multiple items' do
+       before do
+         @stack = Stack.new
+         @stack.push( {test: 'one'} )
+         @an_object = Object.new
+         @stack.push @an_object
+       end
+       it do 
+         expect(@stack.pop).to eq(@an_object) 
+         expect(@stack.size).to eq(1) 
+       end
+     end
+ end
+
+  describe '.peek' do
+     context 'an empty stack' do
+       before do
+         @stack = Stack.new
+       end
+       it { expect(@stack.peek).to be_nil } #Nil or underflow error?
+     end
+     context 'with one object' do
+       before do
+         @stack = Stack.new
+         @an_object = Object.new
+         @stack.push @an_object
+       end
+       it do 
+         expect(@stack.peek).to eq(@an_object) 
+         expect(@stack.size).to eq(1) 
+       end
+     end
+     context 'with multiple items' do
+       before do
+         @stack = Stack.new
+         @stack.push( {test: 'one'} )
+         @an_object = Object.new
+         @stack.push @an_object
+       end
+       it do 
+         expect(@stack.peek).to eq(@an_object) 
+         expect(@stack.size).to eq(2) 
+       end
+     end
+ end
+
 end

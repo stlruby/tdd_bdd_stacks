@@ -25,4 +25,16 @@ class Stack
   def push(node_content)
     @head = Node.new(node_content, @head) 
   end
+
+  def pop
+    return nil if empty?
+    current = @head
+    @head = @head.previous
+    current.content
+  end
+
+  def peek
+    return nil if empty?
+    @head.content
+  end
 end
